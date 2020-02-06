@@ -23,8 +23,7 @@ public class Solution {
         return ans;
     }
 
-   public void dfs(ArrayList<String> ans, String digits, int level, String str) {
-        
+   public void dfs(ArrayList<String> ans, String digits, int level, String str) {       
         //after condition, there is a space, coding style!
 		if (level == digits.length()) {
             ans.add(str);
