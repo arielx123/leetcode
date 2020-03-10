@@ -13,7 +13,40 @@ class ListNode {		//去掉public
 }
 
 public class TwoPointSol {
-	
+	/*
+	986. Interval List Intersections
+	/*有A和B两个闭区间数组，它们分别都是排过序的，且每个数组里的区间之间互不相交。请求出两个数组中闭区间的交。Java two pointers O(m + n)
+        */
+	*/
+		
+
+    public int[][] intervalIntersection(int[][] A, int[][] B) {
+        /*有A和B两个闭区间数组，它们分别都是排过序的，且每个数组里的区间之间互不相交。请求出两个数组中闭区间的交。Java two pointers O(m + n)
+        */
+   
+        if(A == null || A.length == 0 || B == null || B.length == 0)
+            return new int[][]{};
+        List<int[]> res = new ArrayList<>();
+
+        int i = 0, j = 0;
+        int startMax, endMin;
+        while(i < A.length && j < B.length){
+            startMax = Math.max(A[i][0], B[j][0]);
+            endMin = Math.min(A[i][1], B[j][1]);
+
+            if(endMin >= startMax)
+                res.add(new int[]{startMax, endMin});
+
+            // Remove the interval with the smallest endpoint
+            if(A[i][1] == endMin)
+                i++;
+            if(B[j][1] == endMin) 
+                j++;
+        }
+
+        return res.toArray(new int[res.size()][2]);
+    }
+
 	/** 27. Remove Element
 	 *  remove all instances of that value in place and return the new length.
 	 *  顺序可以改变
